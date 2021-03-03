@@ -30,6 +30,7 @@ public class ForkJoinPoolTest {
 
         Task task = new Task(0, nums.length - 1, 50000, nums);
         forkJoinPool.execute(task);
+
         Integer join = task.join();
         System.out.println(join);
     }
