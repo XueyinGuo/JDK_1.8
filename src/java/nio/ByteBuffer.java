@@ -308,6 +308,9 @@ public abstract class ByteBuffer
      *          If the <tt>capacity</tt> is a negative integer
      */
     public static ByteBuffer allocateDirect(int capacity) {
+        /*
+        * 申请直接内存，unsafe，c++的方式
+        * */
         return new DirectByteBuffer(capacity);
     }
 

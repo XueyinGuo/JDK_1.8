@@ -91,6 +91,9 @@ class DirectByteBuffer
                 // Paranoia
                 return;
             }
+            /*
+            * c++ 中的 delete 方法，释放内存
+            * */
             unsafe.freeMemory(address);
             address = 0;
             Bits.unreserveMemory(size, capacity);
@@ -124,11 +127,17 @@ class DirectByteBuffer
 
         long base = 0;
         try {
+            /*
+            * base 为 新申请的地址的起始地址
+            * */
             base = unsafe.allocateMemory(size);
         } catch (OutOfMemoryError x) {
             Bits.unreserveMemory(size, cap);
             throw x;
         }
+        /*
+        * 起始地址 + size 的内存空间进行初始化
+        * */
         unsafe.setMemory(base, size, (byte) 0);
         if (pa && (base % ps != 0)) {
             // Round up to page boundary
@@ -136,6 +145,9 @@ class DirectByteBuffer
         } else {
             address = base;
         }
+        /*
+        * 释放空间用的对象
+        * */
         cleaner = Cleaner.create(this, new Deallocator(base, size, cap));
         att = null;
 

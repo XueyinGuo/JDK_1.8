@@ -233,6 +233,9 @@ public class HashSet<E>
      * @return <tt>true</tt> if the set contained the specified element
      */
     public boolean remove(Object o) {
+        /*
+        *
+        * */
         return map.remove(o)==PRESENT;
     }
 

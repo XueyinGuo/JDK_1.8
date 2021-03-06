@@ -336,6 +336,9 @@ public class LinkedBlockingQueue<E> extends AbstractQueue<E>
         Node<E> node = new Node<E>(e);
         final ReentrantLock putLock = this.putLock;
         final AtomicInteger count = this.count;
+        /*
+         * 两把锁是分开的，这里 put offer 操作都是用的 putLock
+         * */
         putLock.lockInterruptibly();
         try {
             /*
@@ -377,6 +380,9 @@ public class LinkedBlockingQueue<E> extends AbstractQueue<E>
         int c = -1;
         final ReentrantLock putLock = this.putLock;
         final AtomicInteger count = this.count;
+        /*
+         * 两把锁是分开的，这里 put offer 操作都是用的 putLock
+         * */
         putLock.lockInterruptibly();
         try {
             while (count.get() == capacity) {
@@ -415,6 +421,9 @@ public class LinkedBlockingQueue<E> extends AbstractQueue<E>
         int c = -1;
         Node<E> node = new Node<E>(e);
         final ReentrantLock putLock = this.putLock;
+        /*
+         * 两把锁是分开的，这里 put offer 操作都是用的 putLock
+         * */
         putLock.lock();
         try {
             if (count.get() < capacity) {
@@ -436,6 +445,9 @@ public class LinkedBlockingQueue<E> extends AbstractQueue<E>
         int c = -1;
         final AtomicInteger count = this.count;
         final ReentrantLock takeLock = this.takeLock;
+        /*
+        * 两把锁是分开的，这里 take poll 操作都是用的 takeLock
+        * */
         takeLock.lockInterruptibly();
         try {
             while (count.get() == 0) {
@@ -485,6 +497,9 @@ public class LinkedBlockingQueue<E> extends AbstractQueue<E>
         E x = null;
         int c = -1;
         final ReentrantLock takeLock = this.takeLock;
+        /*
+         * 两把锁是分开的，这里 take poll 操作都是用的 takeLock
+         * */
         takeLock.lock();
         try {
             if (count.get() > 0) {
