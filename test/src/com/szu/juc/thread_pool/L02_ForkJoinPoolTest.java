@@ -10,7 +10,7 @@ import java.util.Random;
 import java.util.concurrent.ForkJoinPool;
 import java.util.concurrent.RecursiveTask;
 
-public class ForkJoinPoolTest {
+public class L02_ForkJoinPoolTest {
 
     static int nums[];
 

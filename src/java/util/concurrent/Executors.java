@@ -503,6 +503,9 @@ public class Executors {
     static final class RunnableAdapter<T> implements Callable<T> {
         final Runnable task;
         final T result;
+        /*
+        * 适配器模式？把 runnable 和一个 result 包装成 RunnableAdapter
+        * */
         RunnableAdapter(Runnable task, T result) {
             this.task = task;
             this.result = result;

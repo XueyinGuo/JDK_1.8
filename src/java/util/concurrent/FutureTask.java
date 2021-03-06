@@ -149,6 +149,11 @@ public class FutureTask<V> implements RunnableFuture<V> {
      * @throws NullPointerException if the runnable is null
      */
     public FutureTask(Runnable runnable, V result) {
+        /*
+         * 把 runnable 和一个 result 包装成 RunnableAdapter
+         * RunnableAdapter 实现了 Callable 借口
+         * call()方法执行，让runnable执行run方法
+         * */
         this.callable = Executors.callable(runnable, result);
         this.state = NEW;       // ensure visibility of callable
     }
